@@ -138,7 +138,6 @@ php:
             - intl
             - mcrypt
             - imagick
-            - memcache
             - mysql
             - ldap
         pear: {  }
