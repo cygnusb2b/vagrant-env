@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Handles installation of packages for a working developer instance
-  # config.vm.provision "shell", path: "post_install.sh"
+  config.vm.provision "shell", path: "post_install.sh"
 
   # Transfers SSH keys for github access or CLI commits
   config.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
