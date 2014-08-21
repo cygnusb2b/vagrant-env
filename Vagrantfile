@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Change this configuration to match what resources you want to devote to the box
   config.vm.provider "virtualbox" do |v|
     # v.customize ["modifyvm", :id, "--cpuexecutioncap", "75"]
-    v.memory = 1024
+    v.memory = 2048
     v.cpus = 2
     # v.gui = true
   end
@@ -30,7 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Transfers global Git configuration
   config.vm.provision "file", source: "~/.composer/auth.json", destination: "~/.composer/auth.json"
   config.vm.provision "file", source: "~/.gitconfig", destination: "~/.gitconfig"
-  config.vm.provision "file", source: "base.conf", destination: "/etc/httpd/conf.d/base.conf"
+  config.vm.provision "file", source: "base.conf", destination: "~/base.conf"
+  config.vm.provision "shell", inline: "sudo mv ~/base.conf /etc/httpd/conf.d/base.conf", privileged: false
 
   # Installs Base 3.0 developer instances
   config.vm.provision "shell", path: "base_install.sh", privileged: false
